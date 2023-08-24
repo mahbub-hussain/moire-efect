@@ -1,4 +1,4 @@
-const width = 600;
+const width = window.innerWidth >600 ? 600 : 300  ;
 const height = 500;
 
 const svg = d3
@@ -31,7 +31,7 @@ const renderStar = (id, moveclip, rotateStar) => {
     .attr("width", 3.78)
     .attr("height", 350)
     .attr("x", (d) => d * 22.68 - 3.78 - width / 2 / 2 + moveclip)
-    .attr("y", -width / 2 / 2 -25)
+    .attr("y", -width / 2 / 2 - 25)
     .attr("fill", "white")
     .attr("transform", `rotate(${rotateStar})`);
 };
@@ -50,7 +50,7 @@ for (let frame = 0; frame < 6; frame++) {
   moveclip = moveclip + 3.78;
 }
 
-  let gridMovement = -400
+let gridMovement = -400;
 
 svg
   .append("g")
@@ -66,11 +66,10 @@ svg
   .attr("height", height)
   .attr("fill", "black");
 
-
 let moveleft = false;
 
 setInterval(() => {
-  if (gridMovement === -300 ) {
+  if (gridMovement === -300) {
     moveleft = false;
   } else if (gridMovement === 300) {
     moveleft = true;
@@ -82,5 +81,3 @@ setInterval(() => {
   }
   d3.select("#maingrid").attr("transform", `translate(${gridMovement} 0)`);
 }, 50);
-
-
